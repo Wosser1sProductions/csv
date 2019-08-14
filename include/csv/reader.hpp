@@ -30,9 +30,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #pragma once
-#include <csv/dialect.hpp>
-#include <csv/concurrent_queue.hpp>
-#include <csv/robin_hood.hpp>
+#include "dialect.hpp"
+#include "concurrent_queue.hpp"
+#include "robin_hood.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -362,7 +363,7 @@ namespace csv {
       }
 
       std::string sub_result = "";
-      bool discard_delimiter = false;
+//      bool discard_delimiter = false;
       size_t quotes_encountered = 0;
       size_t input_string_size = input_string.size();
 
