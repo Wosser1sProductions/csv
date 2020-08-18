@@ -1,6 +1,5 @@
-<p align="center">
-  <img height="90" src="https://i.imgur.com/bEG2Udy.png" alt="pprint"/>
-</p>
+## [DEPRECATED APRIL 2020]
+This library is now deprecated. Checkout a second implementation of this library here: https://github.com/p-ranav/csv2. 
 
 ## Highlights
 
@@ -46,7 +45,7 @@ This ```.read``` method is non-blocking. The reader spawns multiple threads to t
 
 ```cpp
 while(foo.busy()) {
-  if (foo.has_row()) {
+  if (foo.ready()) {
     auto row = foo.next_row();  // Each row is a csv::unordered_flat_map (github.com/martinus/robin-hood-hashing)
     auto foo = row["foo"]       // You can use it just like an std::unordered_map
     auto bar = row["bar"];
@@ -124,7 +123,7 @@ Consider this strange, messed up log file:
 To parse this file, simply configure a new dialect that splits on "::" and trims whitespace, braces, and bracket characters.
 
 ```cpp
-csv::reader csv;
+csv::Reader csv;
 csv.configure_dialect("my strange dialect")
   .delimiter("::")
   .trim_characters(' ', '[', ']', '{', '}');   
@@ -152,7 +151,7 @@ Jane Barkley, 25, F, jane.barkley@gmail.com, MGT
 You can configure the dialect to ignore these columns like so:
 
 ```cpp
-csv::reader csv;
+csv::Reader csv;
 csv.configure_dialect("ignore meh and fez")
   .delimiter(", ")
   .ignore_columns("age", "gender");
@@ -364,6 +363,7 @@ Contributions are welcome, have a look at the [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ```sh
 git clone https://github.com/p-ranav/csv.git
+cd csv
 git submodule update --init --recursive
 mkdir build
 cd build
@@ -376,6 +376,7 @@ ctest --output-on-failure -C Debug
 
 ```sh
 git clone https://github.com/p-ranav/csv.git
+cd csv
 mkdir build
 cd build
 cmake ../.
